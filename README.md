@@ -1,7 +1,4 @@
-# mimerdata-public
-Here i put stuff that I have built myself and I think can be useful to others. See below for information about content.
-
-## pbiatlas –  Fabric/Power BI metadata retrieval and storage
+# pbiatlas –  Fabric/Power BI metadata retrieval and storage
 pbiatlas is a pre-built solution consisting of Fabric objects that retrieves and stores information about metadata and user activity in your **Fabric/Power BI domain**. It uses the **Power BI REST API** to collect data and builds on Fabric components for storage, transformation, and visualization.
 
 pbiatlas provides insights such as name, id, creation, modification, lineage, content, etc. into objects within the organization's Power BI or Fabric domain. See [metadata-structure_workspaces](./metadata-structure_workspaces.txt) for a complete list of data points that are being collected.
@@ -10,12 +7,12 @@ pbiatlas provides insights such as name, id, creation, modification, lineage, co
 
 A Fabric Pipeline will make an API-call to the Entra, asking permission to use a registered app (prerequisite) in Azure. This registered app in turn has permission to call and receive information from the organisations Fabric tenant. Having received a token representing the registered app, a new API-call is made, this time to the Fabric tenant, requesting information about workspaces and their content. The information is stored in stored in a Lakehouse (prequisite) of your choise.
 
-#### Configuration File
+### Configuration File
 THe first thing the Fabric pipeline is set to do is to call a configuration file containing necessary parameters for connections and identification (e.g., workspaces, client ID, secrets). This file must be filled in by the user and stored somewhere the Fabric pipeline can reach it; preferably a Lakehouse or Storage account.
 
 This first step in the pipeline must also be configured by the user so that the pipeline can find and read the configuration file. The configuration file needs to follow the format specified in the [example file](/configuration-file.json).
 
-#### Prerequisites
+### Prerequisites
 - Azure App Registration
     - The app has a client secret but **no API permissions** in the Power BI Service.
     - The app must be part of a **security group** that has access to the workspaces to be scanned.
