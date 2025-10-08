@@ -1,0 +1,8 @@
+{
+	"key-vault": {
+        "kv-name":  "name of keyvault",
+        "tenant-id":  "name of secret that contains tenant-id",
+        "client-id": "name of secret that contains client-id",
+        "key": "name of secret that contains secret-key"
+    }
+}
