@@ -1,7 +1,17 @@
+# powershell-toolkit
+Here I store useful Powershell scripts that I run against Fabric to make my life easier.
+
+### Prerequisites
+- [Registered app in Azure for authentication against Power BI.](https://learn.microsoft.com/en-us/power-bi/developer/embedded/register-app)
+- Entra-account with access to Azure Key Vault where app-secrets are stored.
+- [Az-KeyVault Powershell module](https://www.powershellgallery.com/packages/Az.Keyvault/6.3.2)
+- JSON-file with configuration settings. See [example file](/powershell-toolkit/powershell-toolkit-configuration-file.json).
+
+
 # pbiatlas –  Fabric/Power BI metadata retrieval and storage
 pbiatlas is a pre-built solution consisting of Fabric objects that retrieves and stores information about metadata and user activity in your **Fabric/Power BI domain**. It uses the **Power BI REST API** to collect data and builds on Fabric components for storage, transformation, and visualization.
 
-pbiatlas provides insights such as name, id, creation, modification, lineage, content, etc. into objects within the organization's Power BI or Fabric domain. See [metadata-structure_workspaces](./metadata-structure_workspaces.txt) for a complete list of data points that are being collected.
+pbiatlas provides insights such as name, id, creation, modification, lineage, content, etc. into objects within the organization's Power BI or Fabric domain. See [metadata-structure_workspaces](/pbiatlas/metadata-structure_workspaces.txt) for a complete list of data points that are being collected.
 
 ### How it works
 
@@ -10,7 +20,7 @@ A Fabric Pipeline will make an API-call to the Entra, asking permission to use a
 ### Configuration File
 THe first thing the Fabric pipeline is set to do is to call a configuration file containing necessary parameters for connections and identification (e.g., workspaces, client ID, secrets). This file must be filled in by the user and stored somewhere the Fabric pipeline can reach it; preferably a Lakehouse or Storage account.
 
-This first step in the pipeline must also be configured by the user so that the pipeline can find and read the configuration file. The configuration file needs to follow the format specified in the [example file](/configuration-file.json).
+This first step in the pipeline must also be configured by the user so that the pipeline can find and read the configuration file. The configuration file needs to follow the format specified in the [example file](/pbiatlas/configuration-file.json).
 
 ### Prerequisites
 - Azure App Registration
