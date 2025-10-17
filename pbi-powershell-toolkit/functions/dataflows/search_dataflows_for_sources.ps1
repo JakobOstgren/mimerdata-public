@@ -24,9 +24,13 @@ foreach ($file in $jsonFiles) {
     $dataflowName = ($parts[0..($parts.Length - 2)] -join ' ')
 
     # Matcha escaped Schema och Item
-    $matches = [regex]::Matches($content, "\[Schema\s*=\s*\""(?<Schema>[^\""]+)\"",\s*Item\s*=\s*\""(?<Item>[^\""]+)\""\]")
+    $pattern = "\[Schema\s*=\s*\\""(?<Schema>[^\""]+)\\"",\s*Item\s*=\s*\\""(?<Item>[^\""]+)\\""\]"
 
-    foreach ($match in $matches) {
+    $found_matches = [regex]::Matches($content, $pattern)
+
+    # [Schema = \"dbo\", Item = \"employment\"]
+
+    foreach ($match in $found_matches) {
         $output += [PSCustomObject]@{
             "Dataflow name" = $dataflowName
             "Dataflow ID"   = $dataflowId
@@ -45,6 +49,7 @@ if ($output.Count -gt 0) {
     [System.IO.File]::WriteAllLines($csvPath, $csvContent, $utf8WithBom)
 
     Write-Host "CSV-fil sparad till: $csvPath"
-} else {
+}
+else {
     Write-Host "Inga Schema/Item-referenser hittades i JSON-filerna."
 }
